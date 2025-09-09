@@ -12,7 +12,7 @@ A TypeScript-first Smart Home Hub that communicates using JSON/MQTT protocol. Bu
 
 ## Project Structure
 
-```
+```text
 hub/
 ├─ package.json        # scripts + deps
 ├─ tsconfig.json       # ESM, target ES2022
@@ -35,28 +35,45 @@ hub/
 └─ .env.example        # Environment configuration template
 ```
 
-## Setup
+## Quick Start
 
 1. **Install dependencies:**
    ```bash
    npm install
    ```
 
-2. **Set up environment:**
+2. **Run setup script (creates .env, certificates, and database):**
+   ```bash
+   npm run setup
+   ```
+
+3. **Start development server:**
+   ```bash
+   npm run dev
+   ```
+
+The server will start on http://localhost:8080 and attempt to connect to MQTT broker on localhost:8883.
+
+## Manual Setup
+
+If you prefer manual setup:
+
+1. **Set up environment:**
    ```bash
    cp .env.example .env
    # Edit .env with your MQTT broker settings and TLS certificate paths
+   ```
+
+2. **Generate development certificates:**
+   ```bash
+   cd certs
+   # Follow the certificate generation commands in scripts/dev-setup.js
    ```
 
 3. **Initialize database:**
    ```bash
    npm run generate
    npm run migrate
-   ```
-
-4. **Start development server:**
-   ```bash
-   npm run dev
    ```
 
 ## Environment Variables
@@ -74,12 +91,15 @@ Copy `.env.example` to `.env` and configure:
 ## API Endpoints
 
 ### GET /devices
+
 List all registered devices with their status and capabilities.
 
 ### POST /devices/:id/cmd
+
 Send a command to a specific device.
 
 **Request body:**
+
 ```json
 {
   "cap": "swt",
@@ -91,11 +111,13 @@ Send a command to a specific device.
 ## MQTT Topics
 
 The hub subscribes to:
+
 - `$share/hub/iot/+/event` - Device events
 - `$share/hub/iot/+/birth` - Device registration
 - `$share/hub/iot/+/ack` - Command acknowledgments
 
 The hub publishes to:
+
 - `iot/{deviceId}/cmd` - Device commands
 
 ## Message Format

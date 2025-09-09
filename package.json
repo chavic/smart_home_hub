@@ -9,7 +9,10 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "migrate": "prisma migrate dev",
-    "generate": "prisma generate"
+    "generate": "prisma generate",
+    "setup": "node scripts/dev-setup.js",
+    "verify": "./scripts/verify-setup.sh",
+    "test": "echo \"Add your tests here\" && exit 0"
   },
   "dependencies": {
     "mqtt": "^5.3.0",
