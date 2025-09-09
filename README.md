@@ -38,39 +38,45 @@ hub/
 ## Quick Start
 
 1. **Install dependencies:**
+
    ```bash
    npm install
    ```
 
 2. **Run setup script (creates .env, certificates, and database):**
+
    ```bash
    npm run setup
    ```
 
 3. **Start development server:**
+
    ```bash
    npm run dev
    ```
 
-The server will start on http://localhost:8080 and attempt to connect to MQTT broker on localhost:8883.
+The server will start on <http://localhost:8080> and attempt to connect to MQTT broker on localhost:8883.
 
 ## Manual Setup
 
 If you prefer manual setup:
 
 1. **Set up environment:**
+
    ```bash
    cp .env.example .env
    # Edit .env with your MQTT broker settings and TLS certificate paths
    ```
 
 2. **Generate development certificates:**
+
    ```bash
    cd certs
    # Follow the certificate generation commands in scripts/dev-setup.js
    ```
 
 3. **Initialize database:**
+
    ```bash
    npm run generate
    npm run migrate
